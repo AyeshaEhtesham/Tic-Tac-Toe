@@ -59,6 +59,7 @@
     <div id="cell-8" class="tic-tac-toe-cell" onclick="makeMove(8)"></div>
   </div>
   <div id="status"></div>
+  <button id="restart-btn" onclick="restartGame()" style="display: none;">Restart Game</button>
 </div>
 
 <script>
@@ -71,8 +72,10 @@
       board[index] = currentPlayer;
       document.getElementById('cell-' + index).innerText = currentPlayer;
       checkForWinner();
-      currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';
-      updateStatus();
+      if (gameActive) {
+        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        updateStatus();
+      }
     }
   }
 
@@ -88,6 +91,7 @@
       if (board[a] && board[a] === board[b] && board[a] === board[c]) {
         gameActive = false;
         document.getElementById('status').innerText = `${currentPlayer} wins!`;
+        document.getElementById('restart-btn').style.display = 'block'; // Show restart button
         return;
       }
     }
@@ -95,14 +99,30 @@
     if (!board.includes('')) {
       gameActive = false;
       document.getElementById('status').innerText = 'It\'s a draw!';
+      document.getElementById('restart-btn').style.display = 'block'; // Show restart button
     }
   }
 
   function updateStatus() {
-    document.getElementById('status').innerText = `Player ${currentPlayer}'s turn`;
+    if (gameActive) {
+      document.getElementById('status').innerText = `Player ${currentPlayer}'s turn`;
+    }
   }
 
-  updateStatus();
+  function restartGame() {
+    board = ['', '', '', '', '', '', '', '', ''];
+    currentPlayer = 'X';
+    gameActive = true;
+    document.getElementById('restart-btn').style.display = 'none'; // Hide restart button
+    document.getElementById('status').innerText = `Player ${currentPlayer}'s turn`;
+
+    // Reset the board
+    for (let i = 0; i < 9; i++) {
+      document.getElementById('cell-' + i).innerText = '';
+    }
+  }
+
+  updateStatus(); // Initial status
 </script>
 
 <style>
@@ -125,13 +145,21 @@
   #status {
     font-size: 1.5em;
     margin-top: 20px;
+    font-weight: bold;
+  }
+
+  #restart-btn {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+
+  #restart-btn:hover {
+    background-color: #45a049;
   }
 </style>
-
-   
-  </div>
-
-  <img src="https://media.tenor.com/YShs07t2gxcAAAAi/kuromi-kawaii.gif" class="kuromi-img" alt="Kuromi">
-
-</body>
-</html>
