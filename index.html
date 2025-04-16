@@ -46,8 +46,89 @@
   <h2>Tic Tac Toe</h2>
 
   <div class="game-area">
-    <!-- Your Tic Tac Toe game code will go here -->
-    <p>(Game coming soon...)</p>
+    <div class="game-area">
+  <div id="tic-tac-toe-board" style="display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 5px; justify-content: center;">
+    <div id="cell-0" class="tic-tac-toe-cell" onclick="makeMove(0)"></div>
+    <div id="cell-1" class="tic-tac-toe-cell" onclick="makeMove(1)"></div>
+    <div id="cell-2" class="tic-tac-toe-cell" onclick="makeMove(2)"></div>
+    <div id="cell-3" class="tic-tac-toe-cell" onclick="makeMove(3)"></div>
+    <div id="cell-4" class="tic-tac-toe-cell" onclick="makeMove(4)"></div>
+    <div id="cell-5" class="tic-tac-toe-cell" onclick="makeMove(5)"></div>
+    <div id="cell-6" class="tic-tac-toe-cell" onclick="makeMove(6)"></div>
+    <div id="cell-7" class="tic-tac-toe-cell" onclick="makeMove(7)"></div>
+    <div id="cell-8" class="tic-tac-toe-cell" onclick="makeMove(8)"></div>
+  </div>
+  <div id="status"></div>
+</div>
+
+<script>
+  let board = ['', '', '', '', '', '', '', '', ''];
+  let currentPlayer = 'X';
+  let gameActive = true;
+
+  function makeMove(index) {
+    if (gameActive && board[index] === '') {
+      board[index] = currentPlayer;
+      document.getElementById('cell-' + index).innerText = currentPlayer;
+      checkForWinner();
+      currentPlayer = (currentPlayer === 'X') ? 'O' : 'X';
+      updateStatus();
+    }
+  }
+
+  function checkForWinner() {
+    const winPatterns = [
+      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+      [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+      [0, 4, 8], [2, 4, 6]  // Diagonals
+    ];
+
+    for (let i = 0; i < winPatterns.length; i++) {
+      const [a, b, c] = winPatterns[i];
+      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+        gameActive = false;
+        document.getElementById('status').innerText = `${currentPlayer} wins!`;
+        return;
+      }
+    }
+
+    if (!board.includes('')) {
+      gameActive = false;
+      document.getElementById('status').innerText = 'It\'s a draw!';
+    }
+  }
+
+  function updateStatus() {
+    document.getElementById('status').innerText = `Player ${currentPlayer}'s turn`;
+  }
+
+  updateStatus();
+</script>
+
+<style>
+  .tic-tac-toe-cell {
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border: 2px solid #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    cursor: pointer;
+  }
+
+  .tic-tac-toe-cell:hover {
+    background-color: #f0f0f0;
+  }
+
+  #status {
+    font-size: 1.5em;
+    margin-top: 20px;
+  }
+</style>
+
+   
   </div>
 
   <img src="https://media.tenor.com/YShs07t2gxcAAAAi/kuromi-kawaii.gif" class="kuromi-img" alt="Kuromi">
