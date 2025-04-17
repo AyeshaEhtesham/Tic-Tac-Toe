@@ -3,17 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Ayesha Ehtesham's Games World</title>
-<h1 style="text-align: center; font-family: 'Comic Sans MS', cursive; color: #ba55d3;">
-  Ayesha's Games World
-</h1>
-
-<h2 style="text-align: center; font-family: 'Comic Sans MS', cursive; color: #9370db;">
-  Tic Tac Toe – Kuromi Theme
-</h2>
-
-<div style="text-align: center; margin-top: 10px;">
-  <img src="kuromi.png" alt="Kuromi" style="height: 160px;" />
-</div>
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand&display=swap" rel="stylesheet">
   <style>
     body {
@@ -31,11 +20,6 @@
       margin-bottom: 5px;
       color: #d100b2;
       text-shadow: 2px 2px white;
-      <div style="text-align: center; margin-top: 10px;">
-  <img src="https://static.wikia.nocookie.net/sanrio/images/f/fc/Kuromi_render.png" 
-       alt="Kuromi" 
-       style="height: 150px;" />
-</div>
     }
 
     h2 {
@@ -49,133 +33,153 @@
       margin: 10px;
     }
 
-    .game-area {
+    .tic-tac-toe-cell {
+      width: 100px;
+      height: 100px;
+      background-color: #fff;
+      border: 2px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      cursor: pointer;
+    }
+
+    .tic-tac-toe-cell:hover {
+      background-color: #f0f0f0;
+    }
+
+    #status {
+      font-size: 1.5em;
       margin-top: 20px;
+      font-weight: bold;
+    }
+
+    #restart-btn {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 1em;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+
+    #restart-btn:hover {
+      background-color: #45a049;
+    }
+
+    .creator-section {
+      margin-top: 40px;
+    }
+
+    .creator-pic {
+      border-radius: 50%;
+      height: 120px;
+      border: 4px solid #ff99cc;
+      box-shadow: 0 0 10px #ba55d3;
+    }
+
+    .creator-name {
+      font-family: 'Pacifico', cursive;
+      margin-top: 10px;
+      font-size: 1.2em;
+      color: #a000a0;
     }
   </style>
 </head>
 <body>
 
-  <img src="https://media.tenor.com/5_VFM-p_5sUAAAAi/kuromi.gif" class="kuromi-img" alt="Kuromi">
-  
   <h1>Ayesha's Games World</h1>
-  <h2>Tic Tac Toe</h2>
+  <h2>Tic Tac Toe – Kuromi Theme</h2>
+
+  <div style="text-align: center; margin-top: 10px;">
+    <img src="kuromi.png" alt="Kuromi" style="height: 160px;" />
+  </div>
+
+  <img src="https://media.tenor.com/5_VFM-p_5sUAAAAi/kuromi.gif" class="kuromi-img" alt="Kuromi">
 
   <div class="game-area">
-    <div class="game-area">
-  <div id="tic-tac-toe-board" style="display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 5px; justify-content: center;">
-    <div id="cell-0" class="tic-tac-toe-cell" onclick="makeMove(0)"></div>
-    <div id="cell-1" class="tic-tac-toe-cell" onclick="makeMove(1)"></div>
-    <div id="cell-2" class="tic-tac-toe-cell" onclick="makeMove(2)"></div>
-    <div id="cell-3" class="tic-tac-toe-cell" onclick="makeMove(3)"></div>
-    <div id="cell-4" class="tic-tac-toe-cell" onclick="makeMove(4)"></div>
-    <div id="cell-5" class="tic-tac-toe-cell" onclick="makeMove(5)"></div>
-    <div id="cell-6" class="tic-tac-toe-cell" onclick="makeMove(6)"></div>
-    <div id="cell-7" class="tic-tac-toe-cell" onclick="makeMove(7)"></div>
-    <div id="cell-8" class="tic-tac-toe-cell" onclick="makeMove(8)"></div>
+    <div id="tic-tac-toe-board" style="display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 5px; justify-content: center;">
+      <div id="cell-0" class="tic-tac-toe-cell" onclick="makeMove(0)"></div>
+      <div id="cell-1" class="tic-tac-toe-cell" onclick="makeMove(1)"></div>
+      <div id="cell-2" class="tic-tac-toe-cell" onclick="makeMove(2)"></div>
+      <div id="cell-3" class="tic-tac-toe-cell" onclick="makeMove(3)"></div>
+      <div id="cell-4" class="tic-tac-toe-cell" onclick="makeMove(4)"></div>
+      <div id="cell-5" class="tic-tac-toe-cell" onclick="makeMove(5)"></div>
+      <div id="cell-6" class="tic-tac-toe-cell" onclick="makeMove(6)"></div>
+      <div id="cell-7" class="tic-tac-toe-cell" onclick="makeMove(7)"></div>
+      <div id="cell-8" class="tic-tac-toe-cell" onclick="makeMove(8)"></div>
+    </div>
+    <div id="status"></div>
+    <button id="restart-btn" onclick="restartGame()" style="display: none;">Restart Game</button>
   </div>
-  <div id="status"></div>
-  <button id="restart-btn" onclick="restartGame()" style="display: none;">Restart Game</button>
-</div>
 
-<script>
-  let board = ['', '', '', '', '', '', '', '', ''];
-  let currentPlayer = 'X';
-  let gameActive = true;
+  <div class="creator-section">
+    <img src="ayesha ehtesham.png" alt="Ayesha" class="creator-pic" />
+    <div class="creator-name">Game made with love by Ayesha 💜</div>
+  </div>
 
-  function makeMove(index) {
-    if (gameActive && board[index] === '') {
-      board[index] = currentPlayer;
-      document.getElementById('cell-' + index).innerText = currentPlayer;
-      checkForWinner();
-      if (gameActive) {
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-        updateStatus();
+  <script>
+    let board = ['', '', '', '', '', '', '', '', ''];
+    let currentPlayer = 'X';
+    let gameActive = true;
+
+    function makeMove(index) {
+      if (gameActive && board[index] === '') {
+        board[index] = currentPlayer;
+        document.getElementById('cell-' + index).innerText = currentPlayer;
+        checkForWinner();
+        if (gameActive) {
+          currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+          updateStatus();
+        }
       }
     }
-  }
 
-  function checkForWinner() {
-    const winPatterns = [
-      [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
-      [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
-      [0, 4, 8], [2, 4, 6]  // Diagonals
-    ];
+    function checkForWinner() {
+      const winPatterns = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 4, 8], [2, 4, 6]
+      ];
 
-    for (let i = 0; i < winPatterns.length; i++) {
-      const [a, b, c] = winPatterns[i];
-      if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+      for (let i = 0; i < winPatterns.length; i++) {
+        const [a, b, c] = winPatterns[i];
+        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+          gameActive = false;
+          document.getElementById('status').innerText = `${currentPlayer} wins!`;
+          document.getElementById('restart-btn').style.display = 'block';
+          return;
+        }
+      }
+
+      if (!board.includes('')) {
         gameActive = false;
-        document.getElementById('status').innerText = `${currentPlayer} wins!`;
-        document.getElementById('restart-btn').style.display = 'block'; // Show restart button
-        return;
+        document.getElementById('status').innerText = 'It\'s a draw!';
+        document.getElementById('restart-btn').style.display = 'block';
       }
     }
 
-    if (!board.includes('')) {
-      gameActive = false;
-      document.getElementById('status').innerText = 'It\'s a draw!';
-      document.getElementById('restart-btn').style.display = 'block'; // Show restart button
+    function updateStatus() {
+      if (gameActive) {
+        document.getElementById('status').innerText = `Player ${currentPlayer}'s turn`;
+      }
     }
-  }
 
-  function updateStatus() {
-    if (gameActive) {
+    function restartGame() {
+      board = ['', '', '', '', '', '', '', '', ''];
+      currentPlayer = 'X';
+      gameActive = true;
+      document.getElementById('restart-btn').style.display = 'none';
       document.getElementById('status').innerText = `Player ${currentPlayer}'s turn`;
+      for (let i = 0; i < 9; i++) {
+        document.getElementById('cell-' + i).innerText = '';
+      }
     }
-  }
 
-  function restartGame() {
-    board = ['', '', '', '', '', '', '', '', ''];
-    currentPlayer = 'X';
-    gameActive = true;
-    document.getElementById('restart-btn').style.display = 'none'; // Hide restart button
-    document.getElementById('status').innerText = `Player ${currentPlayer}'s turn`;
-
-    // Reset the board
-    for (let i = 0; i < 9; i++) {
-      document.getElementById('cell-' + i).innerText = '';
-    }
-  }
-
-  updateStatus(); // Initial status
-</script>
-
-<style>
-  .tic-tac-toe-cell {
-    width: 100px;
-    height: 100px;
-    background-color: #fff;
-    border: 2px solid #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2em;
-    cursor: pointer;
-  }
-
-  .tic-tac-toe-cell:hover {
-    background-color: #f0f0f0;
-  }
-
-  #status {
-    font-size: 1.5em;
-    margin-top: 20px;
-    font-weight: bold;
-  }
-
-  #restart-btn {
-    margin-top: 20px;
-    padding: 10px;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-  }
-
-  #restart-btn:hover {
-    background-color: #45a049;
-  }
-</style>
+    updateStatus();
+  </script>
+</body>
+</html>
